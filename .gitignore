@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+# Remote .gitignore content
 # Gradle files
 .gradle/
 build/
@@ -32,3 +34,19 @@ google-services.json
 
 # Android Profiling
 *.hprof
+=======
+# Local .gitignore content
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+>>>>>>> d02e213 (first commit)
