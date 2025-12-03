@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:text="@string/change_password"
+        android:textSize="36sp"
+        android:textFontWeight="@android:integer/config_mediumAnimTime"
+        android:fontFamily="sans-serif-thin"
+        android:layout_gravity="center"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="63dp">
+        <EditText
+            android:layout_width="349dp"
+            android:layout_height="48dp"
+            android:inputType="text"
+            android:id="@+id/edt_mk_cu"
+            android:layout_gravity="center_horizontal"
+            android:autofillHints="Mật khẩu cũ"
+            android:background="@drawable/edit_text_border"
+            android:hint="Mật khẩu cũ"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:background="@color/white"
+            android:layout_alignTop="@+id/edt_mk_cu"
+            android:text="Mật khẩu cũ"
+            android:textSize="12sp"
+            android:textColor="@color/text_label"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="14dp">
+        <EditText
+            android:layout_width="349dp"
+            android:layout_height="48dp"
+            android:inputType="text"
+            android:id="@+id/edt_mk_moi"
+            android:layout_gravity="center_horizontal"
+            android:autofillHints="Mật khẩu mới"
+            android:background="@drawable/edit_text_border"
+            android:hint="Mật khẩu mới"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:background="@color/white"
+            android:layout_alignTop="@+id/edt_mk_moi"
+            android:text="Mật khẩu mới"
+            android:textSize="12sp"
+            android:textColor="@color/text_label"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="24dp"
+        android:layout_marginBottom="20dp">
+        <EditText
+            android:layout_width="349dp"
+            android:layout_height="48dp"
+            android:inputType="text"
+            android:id="@+id/edt_xn_mk_moi"
+            android:layout_gravity="center_horizontal"
+            android:autofillHints="Xác nhận mật khẩu mới"
+            android:background="@drawable/edit_text_border"
+            android:hint="Xác nhận mật khẩu mới"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:background="@color/white"
+            android:layout_alignTop="@+id/edt_xn_mk_moi"
+            android:text="Xác nhận mật khẩu mới"
+            android:textSize="12sp"
+            android:textColor="@color/text_label"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        >
+        <Button
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="30dp"
+            android:id="@+id/btn_huy"
+            app:backgroundTint="@null"
+            android:backgroundTint="#264653"
+            android:background="@drawable/button_border"
+            android:text="@string/btn_huy"
+            android:textSize="16sp"/>
+        <Button
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/btn_luu"
+            app:backgroundTint="@null"
+            android:backgroundTint="#2A9D8F"
+            android:background="@drawable/button_border"
+            android:text="@string/btn_luu"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">JPMART_PD07599_v1</string>
+    <string name="login_string">Đăng nhập</string>
+    <string name="change_password">Đổi mật khẩu</string>
+    <string name="btn_huy">Hủy</string>
+    <string name="btn_luu">Lưu</string>
 </resources>
