@@ -7,13 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.jpmart_pd07599_v1.model.DanhMucModel;
+import com.example.jpmart_pd07599_v1.model.ProductModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataHelper extends SQLiteOpenHelper {
     private static final String DB_Name = "JPMart_DB";
-    private static final int DB_Version = 2;
+    private static final int DB_Version = 3;
     public DataHelper(Context context){
         super(context, DB_Name, null, DB_Version);
     }
@@ -37,7 +38,13 @@ public class DataHelper extends SQLiteOpenHelper {
     public static final String CotDiaChi = "diaChi";
     public static final String CotChucVu = "chucVu";
     public static final String CotHoatDong = "isActive";
-
+//    San Pham
+    public static final String BangSanPham = "SanPham";
+    public static final String CotMaSanPham = "maSanPham";
+    public static final String CotTenSanPham = "tenSanPham";
+    public static final String CotDonGia = "donGia";
+    public static final String CotDonViTinh = "donViTinh";
+    public static final String CotSoLuong = "soLuong";
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String TaoBangDanhMuc = "CREATE TABLE IF NOT EXISTS " + BangDanhMuc +
@@ -64,9 +71,22 @@ public class DataHelper extends SQLiteOpenHelper {
                 CotHoatDong + "INTEGER DEFAULT 1," +
                 CotMoTa + "TEXT" + ") ";
 
+        String TaoBangSanPham = "CREATE TABLE IF NOT EXISTS " + BangSanPham +
+                " ( id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                CotMaSanPham + " TEXT UNIQUE, " +
+                CotTenSanPham + " TEXT NOT NULL, "+
+                CotDonGia + " INTEGER NOT NULL, "+
+                CotDonViTinh + " TEXT NOT NULL, " +
+                CotSoLuong + " INTEGER NOT NULL, "+
+                CotNgayKhoiTao + "DATETIME DEFAULT (datetime('now','localtime'))," +
+                CotXoaMem + " INTEGER DEFAULT 0, " +
+                CotMoTa + "TEXT" + ") ";
+
+        sqLiteDatabase.execSQL(TaoBangSanPham);
         sqLiteDatabase.execSQL(TaoBangDanhMuc);
         sqLiteDatabase.execSQL(TaoBangNhanVien);
         insertDefaultCategory(sqLiteDatabase);
+        insertDefaultProduct(sqLiteDatabase);
     }
     // Hàm chèn danh mục mặc định
     private void insertDefaultCategory(SQLiteDatabase db) {
@@ -119,6 +139,106 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(CotTenDanhMuc, "Sức khỏe");
         values.put(CotMoTa, "Thực phẩm chức năng, thuốc không kê đơn từ Nhật");
         db.insert(BangDanhMuc, null, values);
+    }
+
+//    Hàm chèn sản phẩm mặc định
+    private void insertDefaultProduct(SQLiteDatabase db) {
+        ContentValues values = new ContentValues();
+
+        values.put(CotMaSanPham, "SP001");
+        values.put(CotTenSanPham, "Mì ramen Nhật Bản");
+        values.put(CotDonGia, 25000);
+        values.put(CotDonViTinh, "Gói");
+        values.put(CotSoLuong, 50);
+        db.insert(BangSanPham, null, values);
+        values.clear();
+
+        values.put(CotMaSanPham, "SP002");
+        values.put(CotTenSanPham, "Trà xanh Matcha");
+        values.put(CotDonGia, 150000);
+        values.put(CotDonViTinh, "Hộp");
+        values.put(CotSoLuong, 50);
+        db.insert(BangSanPham, null, values);
+        values.clear();
+
+        values.put(CotMaSanPham, "SP003");
+        values.put(CotTenSanPham, "Nước tương Kikkoman");
+        values.put(CotDonGia, 45000);
+        values.put(CotDonViTinh, "Chai");
+        values.put(CotSoLuong, 50);
+        db.insert(BangSanPham, null, values);
+        values.clear();
+
+        values.put(CotMaSanPham, "SP004");
+        values.put(CotTenSanPham, "Rượu Sake Ozeki");
+        values.put(CotDonGia, 350000);
+        values.put(CotDonViTinh, "Chai");
+        values.put(CotSoLuong, 50);
+        db.insert(BangSanPham, null, values);
+        values.clear();
+
+        values.put(CotMaSanPham, "SP005");
+        values.put(CotTenSanPham, "Mặt nạ Senka");
+        values.put(CotDonGia, 85000);
+        values.put(CotDonViTinh, "Hộp");
+        values.put(CotSoLuong, 50);
+        db.insert(BangSanPham, null, values);
+        values.clear();
+
+        values.put(CotMaSanPham, "SP006");
+        values.put(CotTenSanPham, "Kem chống nắng Anessa");
+        values.put(CotDonGia, 380000);
+        values.put(CotDonViTinh, "Tuýp");
+        values.put(CotSoLuong, 50);
+        db.insert(BangSanPham, null, values);
+        values.clear();
+
+        values.put(CotMaSanPham, "SP007");
+        values.put(CotTenSanPham, "Dao nhà bếp Kai");
+        values.put(CotDonGia, 250000);
+        values.put(CotDonViTinh, "Cái");
+        values.put(CotSoLuong, 50);
+        db.insert(BangSanPham, null, values);
+        values.clear();
+
+        values.put(CotMaSanPham, "SP008");
+        values.put(CotTenSanPham, "Bát sứ Nhật");
+        values.put(CotDonGia, 120000);
+        values.put(CotDonViTinh, "Bộ");
+        values.put(CotSoLuong, 50);
+        db.insert(BangSanPham, null, values);
+        values.clear();
+
+        values.put(CotMaSanPham, "SP009");
+        values.put(CotTenSanPham, "Áo thun Uniqlo");
+        values.put(CotDonGia, 199000);
+        values.put(CotDonViTinh, "Cái");
+        values.put(CotSoLuong, 50);
+        db.insert(BangSanPham, null, values);
+        values.clear();
+
+        values.put(CotMaSanPham, "SP010");
+        values.put(CotTenSanPham, "Tai nghe Sony WH-1000XM4");
+        values.put(CotDonGia, 7500000);
+        values.put(CotDonViTinh, "Cái");
+        values.put(CotSoLuong, 50);
+        db.insert(BangSanPham, null, values);
+        values.clear();
+
+        values.put(CotMaSanPham, "SP011");
+        values.put(CotTenSanPham, "Viên uống Collagen DHC");
+        values.put(CotDonGia, 320000);
+        values.put(CotDonViTinh, "Hộp");
+        values.put(CotSoLuong, 50);
+        db.insert(BangSanPham, null, values);
+        values.clear();
+
+        values.put(CotMaSanPham, "SP012");
+        values.put(CotTenSanPham, "Kẹo Kit Kat Matcha");
+        values.put(CotDonGia, 65000);
+        values.put(CotDonViTinh, "Hộp");
+        values.put(CotSoLuong, 50);
+        db.insert(BangSanPham, null, values);
     }
 
     @Override
@@ -183,5 +303,30 @@ public class DataHelper extends SQLiteOpenHelper {
         int result = db.update(BangDanhMuc, values, "id = ?", new String[]{String.valueOf(danhMuc.getId())});
         db.close();
         return result > 0;
+    }
+    public List<ProductModel> getAllProduct(){
+        List<ProductModel> productList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + BangSanPham + " WHERE isDeleted = 0", null);
+
+        if (cursor.moveToFirst()){
+            do {
+                 ProductModel product = new ProductModel(
+                        cursor.getInt(0), // id
+                        cursor.getString(1), // maSanPham
+                        cursor.getString(2), // tenSanPham
+                        cursor.getInt(3), // donGia
+                        cursor.getString(4), //donViTinh
+                        cursor.getInt(5), // soLuon
+                        cursor.getInt(6) == 1,
+                        cursor.getString(7)
+                );
+                productList.add(product);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return productList;
     }
 }
