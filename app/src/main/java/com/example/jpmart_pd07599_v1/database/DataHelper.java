@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DataHelper extends SQLiteOpenHelper {
     private static final String DB_Name = "JPMart_DB";
-    private static final int DB_Version = 1;
+    private static final int DB_Version = 2;
     public DataHelper(Context context){
         super(context, DB_Name, null, DB_Version);
     }
@@ -66,6 +66,59 @@ public class DataHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(TaoBangDanhMuc);
         sqLiteDatabase.execSQL(TaoBangNhanVien);
+        insertDefaultCategory(sqLiteDatabase);
+    }
+    // Hàm chèn danh mục mặc định
+    private void insertDefaultCategory(SQLiteDatabase db) {
+        ContentValues values = new ContentValues();
+
+        // Thêm danh mục mặc định 1: Thực phẩm
+        values.put(CotMaDanhMuc, "DM001");
+        values.put(CotTenDanhMuc, "Thực phẩm");
+        values.put(CotMoTa, "Thực phẩm đóng gói, mì ăn liền, gia vị từ Nhật Bản");
+        db.insert(BangDanhMuc, null, values);
+        values.clear();
+
+        // Thêm danh mục mặc định 2: Đồ uống
+        values.put(CotMaDanhMuc, "DM002");
+        values.put(CotTenDanhMuc, "Đồ uống");
+        values.put(CotMoTa, "Nước ngọt, trà, cà phê, rượu sake Nhật Bản");
+        db.insert(BangDanhMuc, null, values);
+        values.clear();
+
+        // Thêm danh mục mặc định 3: Mỹ phẩm
+        values.put(CotMaDanhMuc, "DM003");
+        values.put(CotTenDanhMuc, "Mỹ phẩm");
+        values.put(CotMoTa, "Sản phẩm chăm sóc da, trang điểm từ Nhật Bản");
+        db.insert(BangDanhMuc, null, values);
+        values.clear();
+
+        // Thêm danh mục mặc định 4: Đồ gia dụng
+        values.put(CotMaDanhMuc, "DM004");
+        values.put(CotTenDanhMuc, "Đồ gia dụng");
+        values.put(CotMoTa, "Dụng cụ nhà bếp, đồ dùng sinh hoạt Nhật Bản");
+        db.insert(BangDanhMuc, null, values);
+        values.clear();
+
+        // Thêm danh mục mặc định 5: Thời trang
+        values.put(CotMaDanhMuc, "DM005");
+        values.put(CotTenDanhMuc, "Thời trang");
+        values.put(CotMoTa, "Quần áo, phụ kiện thời trang từ Nhật Bản");
+        db.insert(BangDanhMuc, null, values);
+        values.clear();
+
+        // Thêm danh mục mặc định 6: Điện tử
+        values.put(CotMaDanhMuc, "DM006");
+        values.put(CotTenDanhMuc, "Điện tử");
+        values.put(CotMoTa, "Thiết bị điện tử, công nghệ từ Nhật Bản");
+        db.insert(BangDanhMuc, null, values);
+        values.clear();
+
+        // Thêm danh mục mặc định 7: Sức khỏe
+        values.put(CotMaDanhMuc, "DM007");
+        values.put(CotTenDanhMuc, "Sức khỏe");
+        values.put(CotMoTa, "Thực phẩm chức năng, thuốc không kê đơn từ Nhật");
+        db.insert(BangDanhMuc, null, values);
     }
 
     @Override

@@ -4,12 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F8F9">
+    android:background="@color/white">
     <Toolbar
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:background="@color/white"
-        android:title="Quản lý danh mục"
+        android:title="Quản lý hóa đơn"
         android:navigationIcon="@drawable/ic_back" />
     <EditText
         android:layout_width="360dp"

@@ -5,31 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
-        android:text="@string/change_password"
-        android:textSize="36sp"
-        android:textFontWeight="@android:integer/config_mediumAnimTime"
-        android:fontFamily="sans-serif-thin"
-        android:layout_gravity="center"
-        />
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@color/white"
+        android:title="Sửa danh mục"
+        android:navigationIcon="@drawable/ic_back" />
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingBottom="14dp"
-        android:layout_marginTop="63dp">
+        android:paddingBottom="34dp"
+        android:layout_marginTop="51dp">
         <EditText
             android:layout_width="349dp"
             android:layout_height="48dp"
             android:inputType="text"
-            android:id="@+id/edt_mk_cu"
+            android:id="@+id/edtIdCategory"
             android:layout_gravity="center_horizontal"
-            android:autofillHints="Mật khẩu cũ"
+            android:autofillHints="DMDA001"
             android:background="@drawable/edit_text_border"
-            android:hint="Mật khẩu cũ"
+            android:hint="DMDA001"
             android:layout_marginTop="10dp"
             />
         <TextView
@@ -40,8 +36,9 @@
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:background="@color/white"
-            android:layout_alignTop="@+id/edt_mk_cu"
-            android:text="Mật khẩu cũ"
+            android:layout_alignTop="@+id/edtIdCategory"
+            android:text="Mã danh mục"
+            android:textStyle="bold"
             android:textSize="12sp"
             android:textColor="@color/text_label"/>
     </RelativeLayout>
@@ -49,16 +46,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingBottom="14dp">
+        android:paddingBottom="62dp">
         <EditText
             android:layout_width="349dp"
             android:layout_height="48dp"
             android:inputType="text"
-            android:id="@+id/edt_mk_moi"
+            android:id="@+id/edtDesCategory"
             android:layout_gravity="center_horizontal"
-            android:autofillHints="Mật khẩu mới"
+            android:autofillHints="Đồ ăn vặt đầy đủ dinh dưỡng dành cho bé"
             android:background="@drawable/edit_text_border"
-            android:hint="Mật khẩu mới"
+            android:hint="Đồ ăn vặt đầy đủ dinh dưỡng dành cho bé"
             android:layout_marginTop="10dp"
             />
         <TextView
@@ -69,38 +66,9 @@
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:background="@color/white"
-            android:layout_alignTop="@+id/edt_mk_moi"
-            android:text="Mật khẩu mới"
-            android:textSize="12sp"
-            android:textColor="@color/text_label"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingBottom="24dp"
-        android:layout_marginBottom="20dp">
-        <EditText
-            android:layout_width="349dp"
-            android:layout_height="48dp"
-            android:inputType="text"
-            android:id="@+id/edt_xn_mk_moi"
-            android:layout_gravity="center_horizontal"
-            android:autofillHints="Xác nhận mật khẩu mới"
-            android:background="@drawable/edit_text_border"
-            android:hint="Xác nhận mật khẩu mới"
-            android:layout_marginTop="10dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="12dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:background="@color/white"
-            android:layout_alignTop="@+id/edt_xn_mk_moi"
-            android:text="Xác nhận mật khẩu mới"
+            android:layout_alignTop="@+id/edtDesCategory"
+            android:text="Tên danh mục"
+            android:textStyle="bold"
             android:textSize="12sp"
             android:textColor="@color/text_label"/>
     </RelativeLayout>

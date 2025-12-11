@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="21dp">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:gravity="center">
+    <ImageView
+        android:id="@+id/imgCategory"
+        android:layout_width="77dp"
+        android:layout_height="82dp"
+        android:contentDescription="Image Category"
+        android:src="@drawable/ic_orders"/>
+    <TextView
+        android:id="@+id/txtIdCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mã danh mục"/>
+    <TextView
+        android:id="@+id/txtNameCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên danh mục"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/txtDescripCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mô tả danh mục"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal"
+        android:layout_gravity="end">
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Edit"
+            android:src="@drawable/ic_edit"
+            android:id="@+id/btnEdit"
+            app:background="@null"
+            android:background="@drawable/button_border"
+            android:backgroundTint="#264653"/>
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Delete"
+            android:src="@drawable/ic_delete"
+            android:id="@+id/btnDelete"
+            app:background="@null"
+            android:background="@drawable/button_border"/>
+    </LinearLayout>
+</LinearLayout>
+</androidx.cardview.widget.CardView>

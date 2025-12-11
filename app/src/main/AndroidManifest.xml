@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JPMART_PD07599_v1">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.WelcomeScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +20,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.VenueActivity" />
+        <activity android:name=".ui.TopProductsActivity"/>
+        <activity android:name=".ui.TopCustomersActivity"/>
+        <activity android:name=".ui.ProductsActivity"/>
+        <activity android:name=".ui.ChangePasswordActivity"/>
+        <activity android:name=".ui.StaffActivity"/>
+        <activity android:name=".ui.OrdersActivity"/>
+        <activity android:name=".ui.CategoriesActivity"/>
+        <activity android:name=".ui.CustomersActivity"/>
+        <activity android:name=".ui.EditCategoryActivity"/>
+        <activity android:name=".ui.AddCategoryActivity"/>
     </application>
 
 </manifest>
