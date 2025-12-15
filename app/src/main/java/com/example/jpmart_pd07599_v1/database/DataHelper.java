@@ -5,9 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import com.example.jpmart_pd07599_v1.dto.OrderDTO;
+import com.example.jpmart_pd07599_v1.dto.TopProductDTO;
 import com.example.jpmart_pd07599_v1.model.CustomerModel;
 import com.example.jpmart_pd07599_v1.model.DanhMucModel;
+import com.example.jpmart_pd07599_v1.model.NhanVienModel;
+import com.example.jpmart_pd07599_v1.model.OrderModel;
 import com.example.jpmart_pd07599_v1.model.ProductModel;
 
 import java.util.ArrayList;
@@ -15,7 +20,7 @@ import java.util.List;
 
 public class DataHelper extends SQLiteOpenHelper {
     private static final String DB_Name = "JPMart_DB";
-    private static final int DB_Version = 4;
+    private static final int DB_Version = 12;
     public DataHelper(Context context){
         super(context, DB_Name, null, DB_Version);
     }
@@ -144,8 +149,9 @@ public class DataHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(TaoBangSanPham);
         sqLiteDatabase.execSQL(TaoBangKhachHang);
         sqLiteDatabase.execSQL(TaoBangNhanVien);
-        sqLiteDatabase.execSQL(TaoBangDonHangChiTiet);
         sqLiteDatabase.execSQL(TaoBangDonHang);
+        sqLiteDatabase.execSQL(TaoBangDonHangChiTiet);
+
         insertDefaultCategory(sqLiteDatabase);
         insertDefaultProduct(sqLiteDatabase);
         insertDefaultCustomer(sqLiteDatabase);
@@ -531,6 +537,15 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(CotMoTa, "Khách hàng VIP");
         values.put(CotStatus, 1);
         db.insert(BangHoaDon, null, values);
+
+        values.put(CotMaHoaDon, "HD009");
+        values.put(CotMaKhachHang, "KH008");
+        values.put(CotMaNhanVien, "NV003");
+        values.put(CotTongTien, 7000000); // Tai nghe + Kem chống nắng
+        values.put(CotPhuongThucThanhToan, "Thẻ");
+        values.put(CotMoTa, "Khách hàng VIP");
+        values.put(CotStatus, 1);
+        db.insert(BangHoaDon, null, values);
     }
     private void insertDefaultOrderDetail(SQLiteDatabase db) {
         ContentValues values = new ContentValues();
@@ -681,6 +696,11 @@ public class DataHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + BangHoaDonChiTiet);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ BangHoaDon);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + BangNhanVien);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + BangSanPham);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + BangKhachHang);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + BangDanhMuc);
         onCreate(sqLiteDatabase);
     }
@@ -748,12 +768,12 @@ public class DataHelper extends SQLiteOpenHelper {
             do {
                  ProductModel product = new ProductModel(
                         cursor.getInt(0), // id
-                        cursor.getString(1), // maSanPham
-                        cursor.getString(2), // tenSanPham
-                        cursor.getInt(3), // donGia
-                        cursor.getString(4), //donViTinh
-                        cursor.getInt(5), // soLuon
-                        cursor.getInt(6) == 1,
+                        cursor.getString(2), // maSanPham
+                        cursor.getString(3), // tenSanPham
+                        cursor.getInt(4), // donGia
+                        cursor.getString(5), //donViTinh
+                        cursor.getInt(6), // soLuong
+                        cursor.getInt(8) == 1,
                         cursor.getString(7)
                 );
                 productList.add(product);
@@ -791,6 +811,153 @@ public class DataHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return customerList;
+    }
+
+    public List<NhanVienModel> getAllStaff(){
+        List<NhanVienModel> staffList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + BangNhanVien + " WHERE isActive = 1", null);
+
+        if (cursor.moveToFirst()){
+            do {
+                NhanVienModel staff = new NhanVienModel(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getInt(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getString(8),
+                        cursor.getInt(9),
+                        cursor.getString(10),
+                        cursor.getInt(11) == 1,
+                        cursor.getString(12)
+                );
+                staffList.add(staff);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return staffList;
+    }
+
+    public List<OrderModel> getAllOrder(){
+        List<OrderModel>  ordersList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + BangHoaDon, null);
+
+        if (cursor.moveToFirst()){
+            do {
+                OrderModel order = new OrderModel(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getInt(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getInt(7),
+                        cursor.getString(8)
+                );
+                ordersList.add(order);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return  ordersList;
+    }
+    public List<OrderDTO> getAllOrderDisplay() {
+        List<OrderDTO> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String sql =
+                "SELECT hd.maHoaDon, kh.tenKhachHang, nv.tenNhanVien, hd.tongTien " +
+                        "FROM HoaDon hd " +
+                        "JOIN KhachHang kh ON hd.maKhachHang = kh.maKhachHang " +
+                        "JOIN NhanVien nv ON hd.maNhanVien = nv.maNhanVien";
+
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                OrderDTO order = new OrderDTO(
+                        cursor.getString(0), // maHoaDon
+                        cursor.getString(1), // tenKhachHang
+                        cursor.getString(2), // tenNhanVien
+                        cursor.getInt(3)     // tongTien
+                );
+                list.add(order);
+            } while (cursor.moveToNext());
+        }
+
+        Log.d("ORDER_DEBUG", "Cursor count = " + cursor.getCount());
+
+
+        cursor.close();
+        db.close();
+        return list;
+    }
+
+    public int getRevenueBetweenDates(String fromDate, String toDate) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int total = 0;
+
+        String sql =
+                "SELECT SUM(" + CotTongTien + ") " +
+                        "FROM " + BangHoaDon + " " +
+                        "WHERE date(" + CotNgayKhoiTao + ") " +
+                        "BETWEEN date(?) AND date(?)";
+
+        Cursor cursor = db.rawQuery(sql, new String[]{fromDate, toDate});
+
+        if (cursor.moveToFirst()) {
+            total = cursor.isNull(0) ? 0 : cursor.getInt(0);
+        }
+
+        cursor.close();
+        return total;
+    }
+    public List<TopProductDTO> getTopProduct(
+            String fromDate,
+            String toDate,
+            int limit
+    ) {
+        List<TopProductDTO> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String sql =
+                "SELECT sp." + CotMaSanPham + ", sp." + CotTenSanPham + ", " +
+                        "SUM(ct." + CotSoLuong + ") AS tongSoLuong, " +
+                        "SUM(ct." + CotThanhTien + ") AS tongDoanhThu " +
+                        "FROM " + BangHoaDonChiTiet + " ct " +
+                        "JOIN " + BangHoaDon + " hd ON ct." + CotMaHoaDon + " = hd." + CotMaHoaDon + " " +
+                        "JOIN " + BangSanPham + " sp ON ct." + CotMaSanPham + " = sp." + CotMaSanPham + " " +
+                        "WHERE date(hd." + CotNgayKhoiTao + ") BETWEEN date(?) AND date(?) " +
+                        "GROUP BY sp." + CotMaSanPham + ", sp." + CotTenSanPham + " " +
+                        "ORDER BY tongSoLuong DESC " +
+                        "LIMIT ?";
+
+        Cursor c = db.rawQuery(
+                sql,
+                new String[]{fromDate, toDate, String.valueOf(limit)}
+        );
+
+        while (c.moveToNext()) {
+            list.add(new TopProductDTO(
+                    c.getString(0),
+                    c.getString(1),
+                    c.getInt(2),
+                    c.getInt(3)
+            ));
+        }
+
+        c.close();
+        db.close();
+        return list;
     }
 
 }

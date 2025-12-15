@@ -8,7 +8,7 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarCus"
         android:background="@color/white"
         android:navigationIcon="@drawable/ic_back" />
     <RelativeLayout
@@ -37,7 +37,7 @@
             android:paddingEnd="5dp"
             android:background="@color/white"
             android:layout_alignTop="@+id/edtIdCategory"
-            android:text="Mã danh mục"
+            android:text="Tên khách hàng"
             android:textStyle="bold"
             android:textSize="12sp"
             android:textColor="@color/text_label"/>
@@ -67,7 +67,7 @@
             android:paddingEnd="5dp"
             android:background="@color/white"
             android:layout_alignTop="@+id/edtNameProduct"
-            android:text="Tên sản phẩm"
+            android:text="Số điện thoại"
             android:textStyle="bold"
             android:textSize="12sp"
             android:textColor="@color/text_label"/>
@@ -97,7 +97,7 @@
             android:paddingEnd="5dp"
             android:background="@color/white"
             android:layout_alignTop="@+id/edtPrice"
-            android:text="Giá sản phẩm"
+            android:text="Email"
             android:textStyle="bold"
             android:textSize="12sp"
             android:textColor="@color/text_label"/>
@@ -127,41 +127,12 @@
             android:paddingEnd="5dp"
             android:background="@color/white"
             android:layout_alignTop="@+id/edtQuantity"
-            android:text="Số lượng sản phẩm"
+            android:text="Địa chỉ"
             android:textStyle="bold"
             android:textSize="12sp"
             android:textColor="@color/text_label"/>
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingBottom="18dp">
-        <EditText
-            android:layout_width="349dp"
-            android:layout_height="48dp"
-            android:inputType="text"
-            android:id="@+id/edtDonViTinh"
-            android:layout_gravity="center_horizontal"
-            android:autofillHints="DMDA001"
-            android:background="@drawable/edit_text_border"
-            android:hint="DMDA001"
-            android:layout_marginTop="10dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="12dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:background="@color/white"
-            android:layout_alignTop="@+id/edtDonViTinh"
-            android:text="Đơn vị tính"
-            android:textStyle="bold"
-            android:textSize="12sp"
-            android:textColor="@color/text_label"/>
-    </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -187,7 +158,7 @@
             android:paddingEnd="5dp"
             android:background="@color/white"
             android:layout_alignTop="@+id/edtMoTa"
-            android:text="Mô tả"
+            android:text="Ghi chú"
             android:textStyle="bold"
             android:textSize="12sp"
             android:textColor="@color/text_label"/>

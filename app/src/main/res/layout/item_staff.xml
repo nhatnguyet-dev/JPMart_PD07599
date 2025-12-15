@@ -3,30 +3,59 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <ImageView
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:src="@drawable/ic_staff"
-        app:backgroundTint="@null"
-        android:background="@drawable/round_border"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_staff"
+            app:backgroundTint="@null"
+            android:background="@drawable/round_border"/>
+        <LinearLayout
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:text="Staff Name"/>
-        <TextView
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:id="@+id/txtNameStaff"
+                android:text="Staff Name"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtPositionStaff"
+                android:text="Position"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Staff Name"/>
+            android:layout_height="24dp"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom">
+            <ImageButton
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Edit"
+                android:src="@drawable/ic_edit"
+                android:id="@+id/btnEditStaff"
+                app:background="@null"
+                android:background="@drawable/button_border"
+                android:backgroundTint="#264653"/>
+            <ImageButton
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Delete"
+                android:src="@drawable/ic_delete"
+                android:id="@+id/btnDeleteStaff"
+                app:background="@null"
+                android:background="@drawable/button_border"/>
+        </LinearLayout>
     </LinearLayout>
-
-</LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -27,7 +27,23 @@ public class NhanVienModel implements Parcelable {
         this.maNhanVien = maNhanVien;
         this.tenNhanVien = tenNhanVien;
     }
-
+    public NhanVienModel(int id, String maNhanVien, String tenNhanVien, String password, int gioiTinh,
+                         String ngaySinh, String soDienThoai, String email, String diaChi, int chucVu,
+                         String createAt, boolean isActive, String note){
+        this.id = id;
+        this.maNhanVien = maNhanVien;
+        this.tenNhanVien = tenNhanVien;
+        this.password = password;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+        this.soDienThoai = soDienThoai;
+        this.email = email;
+        this.diaChi = diaChi;
+        this.chucVu = chucVu;
+        this.createAt = createAt;
+        this.isActive = isActive;
+        this.note = note;
+    }
     protected NhanVienModel(Parcel in) {
         id = in.readInt();
         maNhanVien = in.readString();

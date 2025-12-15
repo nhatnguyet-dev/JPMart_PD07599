@@ -30,7 +30,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginEnd="29dp"
         android:layout_gravity="center"
-        android:id="@+id/recyclerViewCategory">
+        android:id="@+id/recyclerViewStaff">
     </androidx.recyclerview.widget.RecyclerView>
     <LinearLayout
         android:layout_width="match_parent"

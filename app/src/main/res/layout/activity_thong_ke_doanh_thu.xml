@@ -11,22 +11,101 @@
         android:id="@+id/toolbar"
         android:background="@color/white"
         android:navigationIcon="@drawable/ic_back" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="end"
-        android:background="#FFFFFF">
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="18dp"
+        android:layout_marginTop="14dp">
+        <DatePicker
+            android:layout_width="349dp"
+            android:layout_height="120dp"
+            android:endYear="2100"
+            android:startYear="1900"
+            android:layout_marginTop="10dp"
+            android:id="@+id/edtStartDate"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false">
+        </DatePicker>
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:id="@+id/btnAdd"
-            app:backgroundTint="@null"
-            android:background="@drawable/button_border"
-            android:backgroundTint="#FFFFFF"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_add">
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:background="@color/white"
+            android:layout_alignTop="@+id/edtStartDate"
+            android:text="Từ ngày"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:textColor="@color/text_label"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="18dp"
+        android:layout_marginTop="14dp">
+        <DatePicker
+            android:layout_width="349dp"
+            android:layout_height="120dp"
+            android:endYear="2100"
+            android:startYear="1900"
+            android:layout_marginTop="10dp"
+            android:id="@+id/edtEndDate"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false">
+        </DatePicker>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:background="@color/white"
+            android:layout_alignTop="@+id/edtEndDate"
+            android:text="Đến ngày"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:textColor="@color/text_label"/>
+    </RelativeLayout>
+    <Button
+        android:layout_width="349dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/btnCaculate"
+        app:backgroundTint="@null"
+        android:backgroundTint="#264653"
+        android:background="@drawable/button_border"
+        android:text="Thống kê doanh thu"
+        android:textSize="16sp"/>
+    <LinearLayout
+        android:layout_width="349dp"
+        android:layout_height="154dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="#264653">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Doanh thu"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:layout_marginBottom="18dp"
+            android:layout_marginTop="18dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/txtTotalVenue"
+            android:textStyle="bold"
+            android:textColor="#E76351"
+            android:textSize="36sp"
+            android:text="100.000.000 VND"/>
     </LinearLayout>
 </LinearLayout>
