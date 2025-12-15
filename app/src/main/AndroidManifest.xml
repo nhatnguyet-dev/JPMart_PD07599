@@ -35,6 +35,8 @@
         <activity android:name=".ui.AddCategoryActivity"/>
         <activity android:name=".ui.EditProductActivity"/>
         <activity android:name=".ui.AddProductActivity"/>
+        <activity android:name=".ui.EditCustomerActivity"/>
+        <activity android:name=".ui.AddCustomerActivity"/>
     </application>
 
 </manifest>

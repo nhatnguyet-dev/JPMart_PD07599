@@ -30,7 +30,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginEnd="29dp"
         android:layout_gravity="center"
-        android:id="@+id/recyclerViewCategory">
+        android:id="@+id/recyclerViewCustomer">
     </androidx.recyclerview.widget.RecyclerView>
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:id="@+id/btnAdd"
+            android:id="@+id/btnAddCustomer"
             app:backgroundTint="@null"
             android:background="@drawable/button_border"
             android:backgroundTint="#FFFFFF"
