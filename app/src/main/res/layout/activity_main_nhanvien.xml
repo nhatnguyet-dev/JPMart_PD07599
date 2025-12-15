@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:ignore="MissingClass"
     android:background="@color/white">
     <androidx.appcompat.widget.Toolbar
@@ -16,25 +15,26 @@
         android:navigationIcon="@drawable/ic_back" />
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="107dp"
+        android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:backgroundTint="#263238"
-        app:cardCornerRadius="12dp"
-        android:layout_gravity="center">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_bg_main"/>
+        app:cardCornerRadius="12dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_bg_main" />
     </androidx.cardview.widget.CardView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="20dp"
+        android:gravity="center">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,122 +43,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingRight="4dp"
-                android:paddingLeft="4dp"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:textColor="#2B9D8F"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:background="@color/white"
                 android:layout_gravity="center"
-                android:text="Thống kê"
-                android:background="@color/white"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginRight="15dp"
-                android:clickable="true"
-                android:id="@+id/btndoanhThu"
-                android:layout_marginLeft="15dp">
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="12dp">
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/ic_revenue"/>
-                </androidx.cardview.widget.CardView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:text="Doanh Thu"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:clickable="true"
-                android:id="@+id/btnTopProducts"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp">
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="12dp">
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/ic_top_products"/>
-                </androidx.cardview.widget.CardView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:text="Top sản phẩm"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:clickable="true"
-                android:id="@+id/btnTopCustomers"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp">
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="12dp">
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/ic_top_customers"/>
-                </androidx.cardview.widget.CardView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:text="Top khách hàng" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/strikethrough_line">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="#2B9D8F"
-            android:paddingRight="4dp"
-            android:paddingLeft="4dp"
-            android:background="@color/white"
-            android:layout_gravity="center"
-            android:text="Quản lý" />
+                android:text="Quản lý" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -319,17 +211,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/strikethrough_line">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Người dùng"
-            android:textSize="18sp"
-            android:textColor="#2B9D8F"
-            android:paddingRight="4dp"
-            android:paddingLeft="4dp"
-            android:background="@color/white"
-            android:layout_gravity="center"
-            android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Người dùng"
+                android:textSize="18sp"
+                android:textColor="#2B9D8F"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:background="@color/white"
+                android:layout_gravity="center"
+                android:textStyle="bold"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

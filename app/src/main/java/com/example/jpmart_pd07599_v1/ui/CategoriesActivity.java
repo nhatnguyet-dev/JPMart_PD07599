@@ -6,6 +6,7 @@ import android.util.TypedValue;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,9 +22,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 public class CategoriesActivity extends AppCompatActivity {
-    private RecyclerView recyclerViewCate;
-    private FloatingActionButton btnAdd;
-
+    protected RecyclerView recyclerViewCate;
+    protected FloatingActionButton btnAdd;
+    protected Toolbar toolbar;
     @Override
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
@@ -31,6 +32,7 @@ public class CategoriesActivity extends AppCompatActivity {
 
         recyclerViewCate = findViewById(R.id.recyclerViewCategory);
         btnAdd = findViewById(R.id.btnAdd);
+        toolbar = findViewById(R.id.toolbar);
 
         DataHelper db = new DataHelper(this);
 
@@ -60,6 +62,15 @@ public class CategoriesActivity extends AppCompatActivity {
         recyclerViewCate.addItemDecoration(new SpacingItemDecoration(spacingPx));
         btnAdd.setOnClickListener(v->{
             startActivity(new Intent(CategoriesActivity.this, AddCategoryActivity.class));
+        });
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Quản lý danh mục");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(v->{
+            onBackPressed();
         });
 
     }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,8 +18,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 public class ProductsActivity extends AppCompatActivity {
-    private RecyclerView recyclerViewPro;
-    private FloatingActionButton btnAdd;
+    protected RecyclerView recyclerViewPro;
+    protected FloatingActionButton btnAdd;
+    protected Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ public class ProductsActivity extends AppCompatActivity {
 
         recyclerViewPro = findViewById(R.id.recyclerViewProduct);
         btnAdd = findViewById(R.id.btnAddProduct);
+        toolbar = findViewById(R.id.toolbar_sp);
 
         DataHelper db = new DataHelper(this);
         List<ProductModel> productList = db.getAllProduct();
@@ -45,6 +48,15 @@ public class ProductsActivity extends AppCompatActivity {
 
         btnAdd.setOnClickListener(v->{
             startActivity(new Intent(ProductsActivity.this, AddProductActivity.class));
+        });
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Quản lý sản phẩm");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(v->{
+            onBackPressed();
         });
     }
 }

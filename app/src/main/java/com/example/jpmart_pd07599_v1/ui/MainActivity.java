@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout btnDoanhThu, btnTopProducts, btnTopCustomers
             , btnProducts, btnCustomers, btnOrders, btnCategories
             , btnStaff, btnChangePassword;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         btnCategories = findViewById(R.id.btnCategories);
         btnStaff = findViewById(R.id.btnStaff);
         btnChangePassword = findViewById(R.id.btnChangePasswords);
+        toolbar = findViewById(R.id.toolbar);
 
         btnDoanhThu.setOnClickListener(v->{
             startActivity(new Intent(MainActivity.this, VenueActivity.class));
@@ -70,5 +73,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, ChangePasswordActivity.class));
         });
 
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Home");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(v->{
+            onBackPressed();
+        });
     }
 }

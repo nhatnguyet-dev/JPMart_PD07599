@@ -5,11 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white">
-    <Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="52dp"
+        android:id="@+id/toolbar"
         android:background="@color/white"
-        android:title="Thêm sản phẩm"
         android:navigationIcon="@drawable/ic_back" />
     <RelativeLayout
         android:layout_width="wrap_content"
