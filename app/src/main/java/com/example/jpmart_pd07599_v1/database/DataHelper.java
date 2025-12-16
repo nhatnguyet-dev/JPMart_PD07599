@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.jpmart_pd07599_v1.dto.OrderDTO;
+import com.example.jpmart_pd07599_v1.dto.TopCustomerDTO;
 import com.example.jpmart_pd07599_v1.dto.TopProductDTO;
 import com.example.jpmart_pd07599_v1.model.CustomerModel;
 import com.example.jpmart_pd07599_v1.model.DanhMucModel;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class DataHelper extends SQLiteOpenHelper {
     private static final String DB_Name = "JPMart_DB";
-    private static final int DB_Version = 12;
+    private static final int DB_Version = 14;
     public DataHelper(Context context){
         super(context, DB_Name, null, DB_Version);
     }
@@ -704,6 +705,24 @@ public class DataHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + BangDanhMuc);
         onCreate(sqLiteDatabase);
     }
+    public int login(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor c = db.rawQuery(
+                "SELECT chucVu FROM NhanVien WHERE maNhanVien = ? AND password = ? AND isActive = 1",
+                new String[]{username, password}
+        );
+
+        if (c.moveToFirst()) {
+            int chucVu = c.getInt(0);
+            c.close();
+            return chucVu; // 0 hoặc 1
+        }
+
+        c.close();
+        return -1; // login thất bại
+    }
+
 
     public List<DanhMucModel> getAllDanhMuc(){
         List<DanhMucModel> danhSachDanhMuc = new ArrayList<>();
@@ -758,6 +777,28 @@ public class DataHelper extends SQLiteOpenHelper {
         db.close();
         return result > 0;
     }
+    public DanhMucModel getDanhMucById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT * FROM " + BangDanhMuc + " WHERE id = ?",
+                new String[]{String.valueOf(id)}
+        );
+
+        DanhMucModel dm = null;
+        if (c.moveToFirst()) {
+            dm = new DanhMucModel(
+                    c.getInt(0),
+                    c.getString(1),
+                    c.getString(2),
+                    c.getString(3),
+                    c.getInt(4) == 1,
+                    c.getString(5)
+            );
+        }
+        c.close();
+        db.close();
+        return dm;
+    }
 
     public List<ProductModel> getAllProduct(){
         List<ProductModel> productList = new ArrayList<>();
@@ -784,6 +825,247 @@ public class DataHelper extends SQLiteOpenHelper {
 
         return productList;
     }
+    public ProductModel getProductById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT * FROM " + BangSanPham + " WHERE id = ?",
+                new String[]{String.valueOf(id)}
+        );
+
+        ProductModel p = null;
+        if (c.moveToFirst()) {
+            p = new ProductModel(
+                    c.getInt(0),
+                    c.getString(2),
+                    c.getString(3),
+                    c.getInt(4),
+                    c.getString(5),
+                    c.getInt(6),
+                    c.getInt(8) == 1,
+                    c.getString(7)
+            );
+            p.setMaDanhMuc(c.getString(1));
+        }
+        c.close();
+        db.close();
+        return p;
+    }
+    public boolean createProduct(ProductModel product) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(CotMaDanhMuc, product.getMaDanhMuc());
+        values.put(CotMaSanPham, product.getMaSanPham());
+        values.put(CotTenSanPham, product.getTenSanPham());
+        values.put(CotDonGia, product.getDonGia());
+        values.put(CotDonViTinh, product.getDonViTinh());
+        values.put(CotSoLuong, product.getSoLuong());
+        values.put(CotMoTa, product.getMoTa());
+
+        long result = db.insert(BangSanPham, null, values);
+        db.close();
+        return result > 0;
+    }
+    public boolean updateProduct(ProductModel product) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(CotTenSanPham, product.getTenSanPham());
+        values.put(CotDonGia, product.getDonGia());
+        values.put(CotDonViTinh, product.getDonViTinh());
+        values.put(CotSoLuong, product.getSoLuong());
+        values.put(CotMoTa, product.getMoTa());
+
+        int result = db.update(
+                BangSanPham,
+                values,
+                "id = ?",
+                new String[]{String.valueOf(product.getId())}
+        );
+
+        db.close();
+        return result > 0;
+    }
+    public boolean deleteProduct(int productId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(CotXoaMem, 1);
+
+        int result = db.update(
+                BangSanPham,
+                values,
+                "id = ?",
+                new String[]{String.valueOf(productId)}
+        );
+
+        db.close();
+        return result > 0;
+    }
+
+    public CustomerModel getCustomerById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT * FROM " + BangKhachHang + " WHERE id = ?",
+                new String[]{String.valueOf(id)}
+        );
+
+        CustomerModel kh = null;
+        if (c.moveToFirst()) {
+            kh = new CustomerModel(
+                    c.getInt(0),
+                    c.getString(1),
+                    c.getString(2),
+                    c.getString(3),
+                    c.getString(4),
+                    c.getString(5),
+                    c.getString(6),
+                    c.getString(7),
+                    c.getInt(8) == 1,
+                    c.getString(9)
+            );
+        }
+        c.close();
+        db.close();
+        return kh;
+    }
+    public boolean updateCustomer(CustomerModel c) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues v = new ContentValues();
+
+        v.put(CotTenKhachHang, c.getTenKhachHang());
+        v.put(CotSoDienThoai, c.getSoDienThoai());
+        v.put(CotEmail, c.getEmail());
+        v.put(CotDiaChi, c.getDiaChi());
+        v.put(CotHangThanhVien, c.getHangThanhVien());
+        v.put(CotMoTa, c.getMoTa());
+
+        int r = db.update(
+                BangKhachHang,
+                v,
+                "id = ?",
+                new String[]{String.valueOf(c.getId())}
+        );
+        db.close();
+        return r > 0;
+    }
+    public boolean deleteCustomer(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues v = new ContentValues();
+        v.put(CotHoatDong, 0);
+
+        int r = db.update(
+                BangKhachHang,
+                v,
+                "id = ?",
+                new String[]{String.valueOf(id)}
+        );
+        db.close();
+        return r > 0;
+    }
+    public NhanVienModel getStaffById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT * FROM " + BangNhanVien + " WHERE id = ?",
+                new String[]{String.valueOf(id)}
+        );
+
+        NhanVienModel nv = null;
+        if (c.moveToFirst()) {
+            nv = new NhanVienModel(
+                    c.getInt(0),
+                    c.getString(1),
+                    c.getString(2),
+                    c.getString(3),
+                    c.getInt(4),
+                    c.getString(5),
+                    c.getString(6),
+                    c.getString(7),
+                    c.getString(8),
+                    c.getInt(9),
+                    c.getString(10),
+                    c.getInt(11) == 1,
+                    c.getString(12)
+            );
+        }
+        c.close();
+        db.close();
+        return nv;
+    }
+    public boolean updateStaff(NhanVienModel nv) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues v = new ContentValues();
+
+        v.put(CotTenNhanVien, nv.getTenNhanVien());
+        v.put(CotSoDienThoai, nv.getSoDienThoai());
+        v.put(CotEmail, nv.getEmail());
+        v.put(CotDiaChi, nv.getDiaChi());
+        v.put(CotChucVu, nv.getChucVu());
+        v.put(CotMoTa, nv.getNote());
+
+        int r = db.update(
+                BangNhanVien,
+                v,
+                "id = ?",
+                new String[]{String.valueOf(nv.getId())}
+        );
+        db.close();
+        return r > 0;
+    }
+    public boolean deleteStaff(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues v = new ContentValues();
+        v.put(CotHoatDong, 0);
+
+        int r = db.update(
+                BangNhanVien,
+                v,
+                "id = ?",
+                new String[]{String.valueOf(id)}
+        );
+        db.close();
+        return r > 0;
+    }
+    public OrderModel getOrderById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT * FROM " + BangHoaDon + " WHERE id = ?",
+                new String[]{String.valueOf(id)}
+        );
+
+        OrderModel o = null;
+        if (c.moveToFirst()) {
+            o = new OrderModel(
+                    c.getInt(0),
+                    c.getString(1),
+                    c.getString(2),
+                    c.getString(3),
+                    c.getInt(4),
+                    c.getString(5),
+                    c.getString(6),
+                    c.getInt(7),
+                    c.getString(8)
+            );
+        }
+        c.close();
+        db.close();
+        return o;
+    }
+    public boolean updateOrderStatus(int id, int status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues v = new ContentValues();
+        v.put(CotStatus, status);
+
+        int r = db.update(
+                BangHoaDon,
+                v,
+                "id = ?",
+                new String[]{String.valueOf(id)}
+        );
+        db.close();
+        return r > 0;
+    }
+
+
 
     public List<CustomerModel> getAllCustomer(){
         List<CustomerModel> customerList = new ArrayList<>();
@@ -959,5 +1241,40 @@ public class DataHelper extends SQLiteOpenHelper {
         db.close();
         return list;
     }
+    public List<TopCustomerDTO> getTopCustomer(
+            String fromDate,
+            String toDate,
+            int limit
+    ) {
+        List<TopCustomerDTO> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        String sql =
+                "SELECT kh." + CotMaKhachHang + ", kh." + CotTenKhachHang + ", " +
+                        "COUNT(hd." + CotMaHoaDon + ") AS soDonHang, " +
+                        "SUM(hd." + CotTongTien + ") AS tongChiTieu " +
+                        "FROM " + BangHoaDon + " hd " +
+                        "JOIN " + BangKhachHang + " kh ON hd." + CotMaKhachHang + " = kh." + CotMaKhachHang + " " +
+                        "WHERE date(hd." + CotNgayKhoiTao + ") BETWEEN date(?) AND date(?) " +
+                        "GROUP BY kh." + CotMaKhachHang + ", kh." + CotTenKhachHang + " " +
+                        "ORDER BY tongChiTieu DESC " +
+                        "LIMIT ?";
+
+        Cursor c = db.rawQuery(
+                sql,
+                new String[]{fromDate, toDate, String.valueOf(limit)}
+        );
+
+        while (c.moveToNext()) {
+            list.add(new TopCustomerDTO(
+                    c.getString(0),
+                    c.getString(1),
+                    c.getInt(2),
+                    c.getInt(3)
+            ));
+        }
+
+        c.close();
+        return list;
+    }
 }

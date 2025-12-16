@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 public class ProductModel implements Parcelable {
     private int id;
+    private String maDanhMuc;
     private String maSanPham;
     private String tenSanPham;
     private int donGia;
@@ -19,6 +20,7 @@ public class ProductModel implements Parcelable {
     public ProductModel(int id, String maSanPham, String tenSanPham, int donGia, String donViTinh,
                             int soLuong, Boolean isDeleted, String createAt){
         this.id = id;
+        this.maDanhMuc = maDanhMuc;
         this.maSanPham = maSanPham;
         this.tenSanPham = tenSanPham;
         this.donGia = donGia;
@@ -96,6 +98,14 @@ public class ProductModel implements Parcelable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getMaDanhMuc() {
+        return maDanhMuc;
+    }
+
+    public void setMaDanhMuc(String maDanhMuc) {
+        this.maDanhMuc = maDanhMuc;
     }
 
     protected ProductModel(Parcel in) {

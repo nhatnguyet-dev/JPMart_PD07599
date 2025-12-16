@@ -20,7 +20,7 @@
             android:layout_height="100dp"
             android:endYear="2100"
             android:startYear="1900"
-            android:id="@+id/edtStartDate"
+            android:id="@+id/edtStartDateCus"
             android:datePickerMode="spinner"
             android:calendarViewShown="false">
         </DatePicker>
@@ -32,7 +32,7 @@
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:background="@color/white"
-            android:layout_alignTop="@+id/edtStartDate"
+            android:layout_alignTop="@+id/edtStartDateCus"
             android:text="Từ ngày"
             android:textStyle="bold"
             android:textSize="12sp"
@@ -47,7 +47,7 @@
             android:layout_height="100dp"
             android:endYear="2100"
             android:startYear="1900"
-            android:id="@+id/edtEndDate"
+            android:id="@+id/edtEndDateCus"
             android:datePickerMode="spinner"
             android:calendarViewShown="false">
         </DatePicker>
@@ -59,7 +59,7 @@
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:background="@color/white"
-            android:layout_alignTop="@+id/edtEndDate"
+            android:layout_alignTop="@+id/edtEndDateCus"
             android:text="Đến ngày"
             android:textStyle="bold"
             android:textSize="12sp"
@@ -74,7 +74,7 @@
             android:layout_width="349dp"
             android:layout_height="48dp"
             android:inputType="number"
-            android:id="@+id/edtQuantity"
+            android:id="@+id/edtQuantityCus"
             android:layout_gravity="center_horizontal"
             android:autofillHints="10"
             android:background="@drawable/edit_text_border"
@@ -88,7 +88,7 @@
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:background="@color/white"
-            android:layout_alignTop="@+id/edtQuantity"
+            android:layout_alignTop="@+id/edtQuantityCus"
             android:text="Số lượng"
             android:textStyle="bold"
             android:textSize="12sp"
@@ -98,7 +98,7 @@
         android:layout_width="349dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/btnCaculate"
+        android:id="@+id/btnCaculateCus"
         app:backgroundTint="@null"
         android:backgroundTint="#264653"
         android:background="@drawable/button_border"
@@ -112,6 +112,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         android:layout_gravity="center"
-        android:id="@+id/recyclerViewCustomer">
+        android:id="@+id/recyclerViewCustomerTop">
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

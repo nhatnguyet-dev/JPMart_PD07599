@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@color/white">
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -26,6 +25,9 @@
             android:autofillHints="DMDA001"
             android:background="@drawable/edit_text_border"
             android:hint="DMDA001"
+            android:enabled="true"
+            android:focusable="false"
+            android:cursorVisible="false"
             android:layout_marginTop="10dp"
             />
         <TextView
@@ -51,11 +53,14 @@
             android:layout_width="349dp"
             android:layout_height="48dp"
             android:inputType="text"
-            android:id="@+id/edtMaProduct"
+            android:enabled="true"
+            android:focusable="false"
+            android:cursorVisible="false"
+            android:id="@+id/edtIdProduct"
             android:layout_gravity="center_horizontal"
-            android:autofillHints="DMDA001"
+            android:autofillHints="SPA001"
             android:background="@drawable/edit_text_border"
-            android:hint="DMDA001"
+            android:hint="SPA001"
             android:layout_marginTop="10dp"
             />
         <TextView
@@ -66,7 +71,7 @@
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:background="@color/white"
-            android:layout_alignTop="@+id/edtMaProduct"
+            android:layout_alignTop="@+id/edtIdProduct"
             android:text="Mã sản phẩm"
             android:textStyle="bold"
             android:textSize="12sp"
@@ -86,6 +91,9 @@
             android:autofillHints="DMDA001"
             android:background="@drawable/edit_text_border"
             android:hint="DMDA001"
+            android:enabled="true"
+            android:focusable="false"
+            android:cursorVisible="false"
             android:layout_marginTop="10dp"
             />
         <TextView
@@ -116,6 +124,9 @@
             android:autofillHints="DMDA001"
             android:background="@drawable/edit_text_border"
             android:hint="DMDA001"
+            android:enabled="true"
+            android:focusable="false"
+            android:cursorVisible="false"
             android:layout_marginTop="10dp"
             />
         <TextView
@@ -146,6 +157,9 @@
             android:autofillHints="DMDA001"
             android:background="@drawable/edit_text_border"
             android:hint="DMDA001"
+            android:enabled="true"
+            android:focusable="false"
+            android:cursorVisible="false"
             android:layout_marginTop="10dp"
             />
         <TextView
@@ -176,6 +190,9 @@
             android:autofillHints="DMDA001"
             android:background="@drawable/edit_text_border"
             android:hint="DMDA001"
+            android:enabled="true"
+            android:focusable="false"
+            android:cursorVisible="false"
             android:layout_marginTop="10dp"
             />
         <TextView
@@ -202,10 +219,13 @@
             android:layout_height="48dp"
             android:inputType="text"
             android:id="@+id/edtMoTa"
+            android:enabled="true"
+            android:focusable="false"
+            android:cursorVisible="false"
             android:layout_gravity="center_horizontal"
             android:autofillHints="DMDA001"
+            android:textColor="@color/black"
             android:background="@drawable/edit_text_border"
-            android:hint="DMDA001"
             android:layout_marginTop="10dp"
             />
         <TextView
@@ -222,32 +242,4 @@
             android:textSize="12sp"
             android:textColor="@color/text_label"/>
     </RelativeLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        >
-        <Button
-            android:layout_width="158dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="30dp"
-            android:id="@+id/btn_huy"
-            app:backgroundTint="@null"
-            android:backgroundTint="#264653"
-            android:background="@drawable/button_border"
-            android:text="@string/btn_huy"
-            android:textSize="16sp"/>
-        <Button
-            android:layout_width="158dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/btn_luu"
-            app:backgroundTint="@null"
-            android:backgroundTint="#2A9D8F"
-            android:background="@drawable/button_border"
-            android:text="@string/btn_luu"
-            android:textSize="16sp"/>
-    </LinearLayout>
 </LinearLayout>

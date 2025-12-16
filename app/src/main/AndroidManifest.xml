@@ -39,6 +39,8 @@
         <activity android:name=".ui.AddCustomerActivity"/>
         <activity android:name=".ui.AddStaffActivity"/>
         <activity android:name=".ui.EditStaffActivity"/>
+        <activity android:name=".ui.ProductDetailActivity"/>
+        <activity android:name=".ui.MainStaffActivity"/>
     </application>
 
 </manifest>
